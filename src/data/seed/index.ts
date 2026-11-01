@@ -4,13 +4,14 @@
 //  2: semester A readings, weekly topics, lecturers and summary links.
 //  3: readings, topics and course details refreshed from the Moodle reading list (1.11.2026).
 //  4: semester A weekly timetable, its known one-off changes, and exam dates.
+//  5: summary links refreshed after checking their relevance to this semester.
 import type { Course, CourseLink, Department, Exam, Lesson, LessonChange, ReadingItem, Semester, Settings, Topic } from '../../domain/types';
 import { db, newId, nowStamp, type AppDB } from '../db';
 import { CALENDAR_5787 } from './calendar5787';
 import { EXAMS_5787A, EXTRA_EXAM_EVENTS_5787A, SCHEDULE_5787A, SCHEDULE_CHANGES_5787A } from './schedule5787a';
 import { GENERAL_LINKS_5787, SYLLABUS_5787A } from './syllabus5787a';
 
-export const SEED_VERSION = 4;
+export const SEED_VERSION = 5;
 
 const SEMESTERS: Omit<Semester, 'createdAt' | 'updatedAt'>[] = [
   {
@@ -83,6 +84,7 @@ export async function ensureSeeded(database: AppDB = db): Promise<void> {
       if (applied < 2) await seedSyllabus(database);
       if (applied < 3) await refreshCourseContent(database);
       if (applied < 4) await seedSchedule(database);
+      if (applied < 5) await refreshCourseLinks(database);
       if (applied < SEED_VERSION) {
         if (settings) await database.settings.update('app', { seedVersion: SEED_VERSION });
         else await database.settings.put(DEFAULT_SETTINGS);
@@ -211,3 +213,18 @@ async function seedSchedule(database: AppDB) {
   await database.exams.bulkAdd(exams);
   await database.calendarEvents.bulkPut(EXTRA_EXAM_EVENTS_5787A);
 }
+
+/** Course links hold no user data, so they are simply replaced with the current list. */
+async function refreshCourseLinks(database: AppDB) {
+  const ids = (await semesterACourses(database)).map((c) => c.id);
+  await database.links.where('courseId').anyOf(ids).delete();
+  const stamp = nowStamp();
+  const links: CourseLink[] = [];
+  for (const course of await semesterACourses(database)) {
+    (SYLLABUS_5787A[course.name]?.links ?? []).forEach((l, order) =>
+      links.push({ ...l, createdAt: stamp, updatedAt: stamp, id: newId(), courseId: course.id, order }),
+    );
+  }
+  await database.links.bulkAdd(links);
+}
+

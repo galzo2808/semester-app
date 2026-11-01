@@ -23,6 +23,9 @@ export interface CourseContent {
 }
 
 const IRIT = 'אירית וולוך, 2022–23';
+// Relevance of each summary to this semester, checked on 1.11.2026 against the readings and topics.
+const MATCH = 'מתאים לחומר של השנה.';
+const PARTIAL = 'חפיפה חלקית: אותם נושאים, בלי המאמרים של השנה.';
 const OLD = 'סיכומי מחזור 2017–18';
 const doc = (id: string) => `https://docs.google.com/document/d/${id}/edit`;
 const folder = (id: string) => `https://drive.google.com/drive/folders/${id}`;
@@ -70,11 +73,9 @@ export const SYLLABUS_5787A: Record<string, CourseContent> = {
       [13, 'הכנה למבחן'],
     ],
     links: [
-      { title: 'סיכום למבחן', url: doc('117Oo4hxgo-CAWoThjeRHl8wD3hsiKUSUf4XWSOUcC4Y'), category: 'exam', source: IRIT },
-      { title: 'סיכום ספר הקריאה (אטקינסון)', url: doc('1T1I1PdmMFheik1KAi1zlSloW2mWPd8EnOWvy3djecYE'), category: 'reading', source: IRIT, note: 'ספר אחר מהשנה (Psychology 2e). לבדוק חפיפה.' },
-      { title: 'סיכומי שיעורים', url: doc('1VV5_ZAuBRG4CgVeKEBEANp1gI-RC1KeG3uMQ6CQ_Uq0'), category: 'lectures', source: IRIT },
-      { title: 'תרגיל בפסיכולוגיה', url: doc('1iODrBYGp24wX1PzUgaXUJzZnFkGCJQXeNprtwDet8bM'), category: 'practice', source: IRIT },
-      { title: 'תרגול בפסיכולוגיה: סיכומי מאמרים', url: doc('1uxNSFAFUmCWNBJFSEfvXqIjJj-yvkbjoGji-tt5KnLc'), category: 'reading', source: IRIT },
+      { title: 'סיכום למבחן', url: doc('117Oo4hxgo-CAWoThjeRHl8wD3hsiKUSUf4XWSOUcC4Y'), category: 'exam', source: IRIT, note: PARTIAL },
+      { title: 'סיכום ספר הקריאה (אטקינסון)', url: doc('1T1I1PdmMFheik1KAi1zlSloW2mWPd8EnOWvy3djecYE'), category: 'reading', source: IRIT, note: 'חפיפה חלקית: ספר אחר מ־Psychology 2e, אבל אותם נושאים (תפיסה, למידה, זיכרון).' },
+      { title: 'סיכומי שיעורים', url: doc('1VV5_ZAuBRG4CgVeKEBEANp1gI-RC1KeG3uMQ6CQ_Uq0'), category: 'lectures', source: IRIT, note: PARTIAL },
       { title: 'תיקיית סיכומים: מבוא לפסיכולוגיה', url: folder('1yfM8bMQWNiveVPlVovfZZW9IAq1HsmmT'), category: 'folder', source: OLD },
     ],
   },
@@ -109,9 +110,9 @@ export const SYLLABUS_5787A: Record<string, CourseContent> = {
       [13, 'הורים וילדים במסכים, וסיכום'],
     ],
     links: [
-      { title: 'סיכום לקראת המבחן', url: doc('11PVFRbs5VOZABOlZjRA4yS1hIWCdPNqBHe0XaxOvEAE'), category: 'exam', source: IRIT },
-      { title: 'סיכום ספר הקריאה', url: doc('1G6LU9XoS2OQaf--mfuvO1Q9oXVyAdLHNYz3tP-VcWiY'), category: 'reading', source: IRIT },
-      { title: 'סיכומי שיעורים', url: doc('1eS9DkJCk9BoQJxPM5t8cclO-hbV1U_x52cds9ziOevY'), category: 'lectures', source: IRIT },
+      { title: 'סיכום לקראת המבחן', url: doc('11PVFRbs5VOZABOlZjRA4yS1hIWCdPNqBHe0XaxOvEAE'), category: 'exam', source: IRIT, note: PARTIAL },
+      { title: 'סיכום ספר הקריאה', url: doc('1G6LU9XoS2OQaf--mfuvO1Q9oXVyAdLHNYz3tP-VcWiY'), category: 'reading', source: IRIT, note: PARTIAL },
+      { title: 'סיכומי שיעורים', url: doc('1eS9DkJCk9BoQJxPM5t8cclO-hbV1U_x52cds9ziOevY'), category: 'lectures', source: IRIT, note: PARTIAL },
       { title: 'תיקיית סיכומים: התפתחותית', url: folder('1Db2RpCubjxOrSQmY27HFWlr1ZOmQUxYF'), category: 'folder', source: OLD },
     ],
   },
@@ -147,10 +148,9 @@ export const SYLLABUS_5787A: Record<string, CourseContent> = {
       [13, 'עמדות, שינוי עמדות ושכנוע'],
     ],
     links: [
-      { title: 'סיכום לקראת המבחן', url: doc('1YhnZy24w9njRYKLp76Xdc6pPjAU1B1FuhcEBr1eF_mQ'), category: 'exam', source: IRIT },
-      { title: 'סיכום ספר הקריאה (מאיירס)', url: doc('1KBYM2kUozJr04BQOgCuS7jNiRVwaFLeKyCbPpE6RKZ0'), category: 'reading', source: IRIT },
-      { title: 'סיכומי מאמרים', url: doc('1yMvBBGIGZSsL2hcwsdrzndoanI6wcQoy6jZKpC8Cic0'), category: 'reading', source: IRIT },
-      { title: 'סיכומי שיעורים', url: doc('1Ky9Pr_8tY0AQWbNVjnuZTo2ydZ19gBKgrpr5NREFpuo'), category: 'lectures', source: IRIT },
+      { title: 'סיכום ספר הקריאה (מאיירס)', url: doc('1KBYM2kUozJr04BQOgCuS7jNiRVwaFLeKyCbPpE6RKZ0'), category: 'reading', source: IRIT, note: 'מתאים: אותו ספר ואותם נושאים כמו השנה.' },
+      { title: 'סיכום לקראת המבחן', url: doc('1YhnZy24w9njRYKLp76Xdc6pPjAU1B1FuhcEBr1eF_mQ'), category: 'exam', source: IRIT, note: PARTIAL },
+      { title: 'סיכומי שיעורים', url: doc('1Ky9Pr_8tY0AQWbNVjnuZTo2ydZ19gBKgrpr5NREFpuo'), category: 'lectures', source: IRIT, note: PARTIAL },
       { title: 'תיקיית סיכומים: פסיכולוגיה חברתית', url: folder('1I7N6U11biF4iGuA23elOM5Qr1kUppN-9'), category: 'folder', source: OLD },
     ],
   },
@@ -183,9 +183,9 @@ export const SYLLABUS_5787A: Record<string, CourseContent> = {
       [13, 'חזרה למבחן'],
     ],
     links: [
-      { title: 'סיכום למבחן', url: doc('1RgLijyVEYoeMKMwP8jEs9mx0zNeQKPO8GJFyks9g-e0'), category: 'exam', source: IRIT },
-      { title: 'סיכום ספר הקריאה', url: doc('12ONGis3MbPvFIDa6-wQx0OPeZnr3-zZsQUHDjIgyPTw'), category: 'reading', source: IRIT },
-      { title: 'סיכומי שיעורים', url: doc('1rvXmq-wkIiG7rCQt8yQS2KhkbYY7c4RBnUjqY4x2_eI'), category: 'lectures', source: IRIT },
+      { title: 'סיכום למבחן', url: doc('1RgLijyVEYoeMKMwP8jEs9mx0zNeQKPO8GJFyks9g-e0'), category: 'exam', source: IRIT, note: MATCH },
+      { title: 'סיכום ספר הקריאה (קרלסון, פרקים 1–5)', url: doc('12ONGis3MbPvFIDa6-wQx0OPeZnr3-zZsQUHDjIgyPTw'), category: 'reading', source: IRIT, note: 'מתאים: אותו ספר ואותם פרקים כמו השנה.' },
+      { title: 'סיכומי שיעורים', url: doc('1rvXmq-wkIiG7rCQt8yQS2KhkbYY7c4RBnUjqY4x2_eI'), category: 'lectures', source: IRIT, note: MATCH },
       { title: 'תיקיית סיכומים: פיזיולוגית', url: folder('1_f4yk5htB8hcccbDPzIiN4mT_6dpE65C'), category: 'folder', source: OLD },
     ],
   },

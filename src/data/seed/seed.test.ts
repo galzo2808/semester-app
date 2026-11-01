@@ -80,5 +80,13 @@ describe('seed', () => {
     const levels = new Set((await db.readings.toArray()).map((r) => r.requirement));
     expect([...levels].sort()).toEqual(['optional', 'recommended', 'required', 'unverified']);
   });
-});
 
+  it('does not duplicate summary links when they are refreshed', async () => {
+    await ensureSeeded(db);
+    const count = await db.links.count();
+    await db.settings.update('app', { seedVersion: 4 });
+    await ensureSeeded(db);
+    expect(await db.links.count()).toBe(count);
+    expect(await db.links.filter((l) => l.title === 'סיכומי מאמרים').count()).toBe(0);
+  });
+});
